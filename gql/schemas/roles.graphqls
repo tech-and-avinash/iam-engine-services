@@ -1,0 +1,216 @@
+"""
+Defines the role type enumeration
+"""
+enum RoleTypeEnum {
+  """
+  Custom role type
+  """
+  CUSTOM
+  """
+  Default role type
+  """
+  DEFAULT
+}
+
+"""
+Represents a Role entity
+"""
+type Role implements Resource {
+  """
+  Assignable scope of the role
+  """
+  assignableScope: Resource!
+  """
+  Timestamp of creation
+  """
+  createdAt: DateTime!
+  """
+  Identifier of the user who created the record
+  """
+  createdBy: UUID!
+  """
+  Description of the role
+  """
+  description: String
+  """
+  Unique identifier of the role
+  """
+  id: UUID!
+  """
+  Name of the role
+  """
+  name: String!
+  """
+  Permissions associated with the role
+  """
+  permissions: [Permission!]!
+  """
+  Type of the role
+  """
+  roleType: RoleTypeEnum!
+  """
+  Timestamp of last update
+  """
+  updatedAt: DateTime!
+  """
+  Identifier of the user who last updated the record
+  """
+  updatedBy: UUID!
+  """
+  Version of the role
+  """
+  version: String!
+}
+
+"""
+Defines input fields for creating a role
+"""
+input CreateRoleInput {
+  """
+  Assignable scope reference ID
+  """
+  assignableScopeRef: UUID!
+  """
+  Description of the role
+  """
+  description: String
+  """
+  Unique identifier of the role
+  """
+  id: UUID!
+  """
+  Name of the role
+  """
+  name: String!
+  """
+  Permissions associated with the role
+  """
+  permissions: [String!]!
+  """
+  Type of the role
+  """
+  roleType: RoleTypeEnum!
+  """
+  Version of the role
+  """
+  version: String!
+}
+
+"""
+Defines input fields for updating a role
+"""
+input UpdateRoleInput {
+  """
+  Updated assignable scope reference ID
+  """
+  assignableScopeRef: UUID!
+  """
+  Updated description of the role
+  """
+  description: String
+  """
+  Unique identifier of the role
+  """
+  id: UUID!
+  """
+  Updated name of the role
+  """
+  name: String!
+  """
+  Updated permissions associated with the role
+  """
+  permissions: [String!]!
+  """
+  Updated type of the role
+  """
+  roleType: RoleTypeEnum!
+  """
+  Updated version of the role
+  """
+  version: String!
+}
+
+"""
+Represents a Permission entity
+"""
+type Permission {
+  """
+  Action associated with the permission
+  """
+  action: String!
+  """
+  Assignable scope of the role
+  """
+  assignableScope: String!
+  """
+  Timestamp of creation
+  """
+  createdAt: DateTime!
+  """
+  Identifier of the user who created the record
+  """
+  createdBy: UUID!
+  """
+  Unique identifier of the permission
+  """
+  id: UUID!
+  """
+  Name of the permission
+  """
+  name: String!
+ 
+  """
+  Timestamp of last update
+  """
+  updatedAt: DateTime!
+  """
+  Identifier of the user who last updated the record
+  """
+  updatedBy: UUID!
+}
+
+"""
+Defines input fields for creating a permission
+"""
+input CreatePermissionInput {
+  """
+  Action associated with the permission
+  """
+  action: String!
+  """
+  Updated assignable scope reference ID
+  """
+  assignableScopeRef: UUID!
+  """
+  Unique identifier of the permission
+  """
+  id: UUID!
+  """
+  Name of the permission
+  """
+  name: String!
+  
+}
+
+"""
+Defines input fields for updating a permission
+"""
+input UpdatePermissionInput {
+  """
+  Updated action associated with the permission
+  """
+  action: String!
+  """
+  Updated assignable scope reference ID
+  """
+  assignableScopeRef: UUID!
+  """
+  Unique identifier of the permission
+  """
+  id: UUID!
+  """
+  Updated name of the permission
+  """
+  name: String!
+ 
+}

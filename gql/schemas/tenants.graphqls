@@ -1,0 +1,181 @@
+"""
+Represents a Tenant entity
+"""
+type Tenant implements Organization & Resource {
+  """
+  Contact information of the tenant
+  """
+  contactInfo: ContactInfo
+  """
+  Timestamp of creation
+  """
+  createdAt: DateTime!
+  """
+  Identifier of the user who created the record
+  """
+  createdBy: UUID!
+  """
+  Description of the tenant
+  """
+  description: String
+  """
+  Unique identifier of the tenant
+  """
+  id: UUID!
+  """
+  Name of the tenant
+  """
+  name: String!
+  """
+  Parent organization
+  """
+  parentOrg: Organization
+  """
+  Timestamp of last update
+  """
+  updatedAt: DateTime!
+  """
+  Identifier of the user who last updated the record
+  """
+  updatedBy: UUID!
+}
+
+"""
+Represents contact information
+"""
+type ContactInfo {
+  """
+  Address of the contact
+  """
+  address: Address
+  """
+  Email of the contact
+  """
+  email: String
+  """
+  Phone number of the contact
+  """
+  phoneNumber: String
+}
+
+"""
+Defines input fields for contact information
+"""
+input ContactInfoInput {
+  """
+  Address of the contact
+  """
+  address: AddressInput
+  """
+  Email of the contact
+  """
+  email: String
+  """
+  Phone number of the contact
+  """
+  phoneNumber: String
+}
+
+"""
+Defines input fields for creating a tenant
+"""
+input CreateTenantInput {
+  """
+  Contact information of the tenant
+  """
+  contactInfo: ContactInfoInput
+  """
+  Description of the tenant
+  """
+  description: String
+  """
+  Unique identifier of the account
+  """
+  id: UUID!
+  """
+  Name of the tenant
+  """
+  name: String!
+  """
+  Parent organization ID
+  """
+  parentId: UUID
+}
+
+"""
+Defines input fields for updating a tenant
+"""
+input UpdateTenantInput {
+  """
+  Updated contact information of the tenant
+  """
+  contactInfo: ContactInfoInput
+  """
+  Updated description of the tenant
+  """
+  description: String
+  """
+  Unique identifier of the tenant
+  """
+  id: UUID!
+  """
+  Updated name of the tenant
+  """
+  name: String
+  """
+  Updated parent organization ID
+  """
+  parentId: UUID
+}
+
+"""
+Represents an address
+"""
+type Address {
+  """
+  City of the address
+  """
+  city: String
+  """
+  Country of the address
+  """
+  country: String
+  """
+  State of the address
+  """
+  state: String
+  """
+  Street of the address
+  """
+  street: String
+  """
+  Zip code of the address
+  """
+  zipCode: String
+}
+
+"""
+Defines input fields for creating an address
+"""
+input AddressInput {
+  """
+  City of the address
+  """
+  city: String
+  """
+  Country of the address
+  """
+  country: String
+  """
+  State of the address
+  """
+  state: String
+  """
+  Street of the address
+  """
+  street: String
+  """
+  Zip code of the address
+  """
+  zipCode: String
+}

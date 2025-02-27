@@ -1,0 +1,369 @@
+query GetAllTenants {
+  tenants {
+    ... on SuccessResponse {
+      isSuccess
+      message
+      data {
+        ... on Tenant {
+          id
+          name
+          description
+          parentOrg {
+            id
+            name
+          }
+          contactInfo {
+            email
+            phoneNumber
+            address {
+              street
+              city
+              state
+              zipCode
+              country
+            }
+          }
+          createdAt
+          updatedAt
+          createdBy
+          updatedBy
+        }
+      }
+    }
+    ... on ErrorResponse {
+      isSuccess
+      message
+      errorCode
+      errorDetails
+    }
+  }
+}
+
+
+query GetTenant($id: UUID!) {
+  getTenant(id: $id) {
+    ... on SuccessResponse {
+      success
+      message
+      data {
+        ... on Tenant {
+          id
+          name
+          description
+          parentOrg {
+            id
+            name
+          }
+          contactInfo {
+            email
+            phoneNumber
+            address {
+              street
+              city
+              state
+              zipCode
+              country
+            }
+          }
+          createdAt
+          updatedAt
+          createdBy
+          updatedBy
+        }
+      }
+    }
+    ... on ErrorResponse {
+      success
+      message
+      errorCode
+      errorDetails
+    }
+  }
+}
+
+
+mutation CreateTenant($input: CreateTenantInput!) {
+  createTenant(input: $input) {
+    ... on SuccessResponse {
+      success
+      message
+      data {
+        ... on Tenant {
+          id
+          name
+          description
+          parentOrg {
+            id
+            name
+          }
+          contactInfo {
+            email
+            phoneNumber
+            address {
+              street
+              city
+              state
+              zipCode
+              country
+            }
+          }
+          createdAt
+          updatedAt
+          createdBy
+          updatedBy
+        }
+      }
+    }
+    ... on ErrorResponse {
+      success
+      message
+      errorCode
+      errorDetails
+    }
+  }
+}
+
+# Variables for create:
+{
+  "input": {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "name": "New Tenant",
+    "description": "Description of new tenant",
+    "parentId": "123e4567-e89b-12d3-a456-426614174001",
+    "contactInfo": {
+      "email": "contact@tenant.com",
+      "phoneNumber": "+1-555-555-5555",
+      "address": {
+        "street": "123 Main St",
+        "city": "New York",
+        "state": "NY",
+        "zipCode": "10001",
+        "country": "USA"
+      }
+    }
+  }
+}
+
+
+mutation UpdateTenant($input: UpdateTenantInput!) {
+  updateTenant(input: $input) {
+    ... on SuccessResponse {
+      success
+      message
+      data {
+        ... on Tenant {
+          id
+          name
+          description
+          parentOrg {
+            id
+            name
+          }
+          contactInfo {
+            email
+            phoneNumber
+            address {
+              street
+              city
+              state
+              zipCode
+              country
+            }
+          }
+          createdAt
+          updatedAt
+          createdBy
+          updatedBy
+        }
+      }
+    }
+    ... on ErrorResponse {
+      success
+      message
+      errorCode
+      errorDetails
+    }
+  }
+}
+
+# Variables for update:
+{
+  "input": {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "name": "Updated Tenant Name",
+    "description": "Updated description",
+    "parentId": "123e4567-e89b-12d3-a456-426614174001",
+    "contactInfo": {
+      "email": "new.contact@tenant.com",
+      "phoneNumber": "+1-555-555-5556",
+      "address": {
+        "street": "456 Updated St",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zipCode": "90001",
+        "country": "USA"
+      }
+    }
+  }
+}
+
+mutation DeleteTenant($id: UUID!) {
+  deleteTenant(id: $id) {
+    ... on SuccessResponse {
+      success
+      message
+    }
+    ... on ErrorResponse {
+      success
+      message
+      errorCode
+      errorDetails
+    }
+  }
+}
+
+# Variables:
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000"
+}
+
+
+
+###################################################
+Role
+
+mutation CreateRole($input: CreateRoleInput!) {
+  createRole(input: $input) {
+    ... on SuccessResponse {
+      isSuccess
+      message
+      data {
+        ... on Role {
+          id
+          name
+          description
+          roleType
+          assignableScope {
+            id
+          }
+          permissions {
+            id
+            name
+            action
+            serviceId
+          }
+          version
+          createdAt
+          updatedAt
+          createdBy
+          updatedBy
+        }
+      }
+    }
+    ... on ResponseError {
+      isSuccess
+      message
+      errorCode
+      errorDetails
+    }
+  }
+}
+
+
+{
+  "input": {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567898",
+    "name": "Admin8",
+    "description": "Administrator role with full access",
+    "roleType":"CUSTOM",
+    "assignableScopeRef": "550e8400-e29b-41d4-a716-446655440005",
+    "permissions": ["f1e3d9a7-7d6c-4f2a-9b1e-2a3d7c6b9f4e", "a2d6e3b7-cf1d-4f9a-b7d2-1f3a7e6c9b4f"],
+    "version": "1.0"
+  }
+}
+
+
+mutation UpdateRole($input: UpdateRoleInput!) {
+  updateRole(input: $input) {
+    ... on SuccessResponse {
+      isSuccess
+      message
+      data {
+        ... on Role {
+          id
+          name
+          description
+          roleType
+          assignableScope {
+            createdAt
+            createdBy
+            id
+            name
+            updatedAt
+            updatedBy
+          }
+          permissions {
+            action
+            createdAt
+            createdBy
+            id
+            name
+            serviceId
+            updatedAt
+            updatedBy
+          }
+          version
+          createdAt
+          updatedAt
+          createdBy
+          updatedBy
+        }
+      }
+    }
+    ... on ResponseError {
+      isSuccess
+      message
+      errorCode
+      errorDetails
+    }
+  }
+}
+
+
+
+{
+  "input": {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567895",
+    "name": "SuperAdmin",
+    "description": "Updated role with extended privileges",
+    "roleType": "CUSTOM",
+    "assignableScopeRef": "550e8400-e29b-41d4-a716-446655440005",
+    "permissions": [
+      "f1e3d9a7-7d6c-4f2a-9b1e-2a3d7c6b9f4e"
+    ],
+    "version": "1.1"
+  }
+}
+
+
+mutation DeleteRole($input: DeleteInput!) {
+  deleteRole(input: $input) {
+    ... on SuccessResponse {
+      isSuccess
+      message
+    }
+    ... on ResponseError {
+      isSuccess
+      message
+      errorCode
+      errorDetails
+    }
+  }
+}
+
+
+{
+  "input": {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567895"
+  }
+}
